@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :visits
   resources :trips
   resources :comments
   resources :attractions
