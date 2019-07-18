@@ -8,5 +8,7 @@
 
 # anaheim = Location.create(city: "Anaheim", state: "California", country: "USA")
 # disney = anaheim.attractions.create(name: "Disneyland", description: "Happiest place on earth!")
-# victoria = User.create(name: "Victoria", username: "Victoria", password: "password")
-# victoria.trips.create()
+# victoria = User.create(name: "Victoria", username: "Victoria", password: "password") NEEDED HOMETOWN
+# victoria_disney= victoria.trips.create(start_date: "2019-07-18", end_date: "2019-07-28")
+# victoria_disney.visits.create(attraction: disney, date: "2019-07-18")
+# victoria.comments.create(content: "Fun for all", attraction: disney)
