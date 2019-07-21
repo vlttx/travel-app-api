@@ -1,7 +1,8 @@
-class SessionsController < ApplicationController
+class Api::V1::SessionsController < ApplicationController
 	def create
+		byebug
 	end
 
-	def 
+	def login
 	 end
 end
