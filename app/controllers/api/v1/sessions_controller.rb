@@ -27,6 +27,6 @@ end
 		session.clear
 		render json: {
 			notice: "Successfully logged out"
-		}
+		}, status:200
 	end
 end
