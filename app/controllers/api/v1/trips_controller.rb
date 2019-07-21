@@ -3,9 +3,14 @@ class Api::V1::TripsController < ApplicationController
 
   # GET /trips
   def index
-    @trips = Trip.all
 
+    if logged_in?
+    @trips = current_user.trips
     render json: @trips
+  else
+    render json: {
+      error: "You must be logged in to see trips"
+    }
   end
 
   # GET /trips/1
