@@ -7,4 +7,6 @@ has_many :attractions, through: :trips
 has_many :locations, through: :trips
 has_many :comments
 
+validates :name, :username, :hometown, presence: true
+
 end
