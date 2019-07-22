@@ -12,6 +12,7 @@ class Api::V1::TripsController < ApplicationController
       error: "You must be logged in to see trips"
     }
   end
+  end
 
   # GET /trips/1
   def show
