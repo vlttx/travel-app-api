@@ -9,7 +9,7 @@ class Api::V1::SessionsController < ApplicationController
 			# setting a user id for the session which is grabbed by app controller
 			# render json   :@user
 
-			render json: @user
+			render json: @user, status: 200
 
 
 		else
@@ -24,7 +24,7 @@ end
 			render json: current_user
 		else
 			render json: {
-				error: "No one logged in"
+				error: "No one is logged in"
 			}
 		end
 	end
