@@ -1,4 +1,5 @@
 class Api::V1::UsersController < ApplicationController
+  wrap_parameters :user, include: [:name, :username, :password, :password_confirmation, :hometown]
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -15,12 +16,17 @@ class Api::V1::UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
-
+    @user = User.create(user_params)
+    @location = Location.find_or_create_by(city: params[:hometown][:city], state: params[:hometown][:state], country: params[:hometown][:country])
+    @user.hometown_id = @location.id
     if @user.save
-      render json: @user, status: :created, location: @user
+      session[:user_id] = @user.id
+      render json: @user, status: 200
     else
-      render json: @user.errors, status: :unprocessable_entity
+      resp = {
+        error: @user.errors.full_messages.to_sentence
+      }
+      render json: resp, status: :unprocessable_entity
     end
   end
 
@@ -46,6 +52,6 @@ class Api::V1::UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :username, :password_digest)
+      params.require(:user).permit(:name, :username, :password, :password_confirmation, :hometown)
     end
 end
