@@ -24,7 +24,7 @@ end
 			render json: current_user
 		else
 			render json: {
-				error: "No one is logged in"
+				error: "Please Log in!"
 			}
 		end
 	end
