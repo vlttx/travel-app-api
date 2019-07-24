@@ -21,7 +21,7 @@ class Api::V1::TripsController < ApplicationController
 
   # POST /trips
   def create
-
+    # @trip = current_user.trips.build(trip_params)
     @trip = Trip.new(trip_params)
 
     if @trip.save
@@ -40,7 +40,10 @@ class Api::V1::TripsController < ApplicationController
     if @trip.update(trip_params)
       render json: @trip
     else
-      render json: @trip.errors, status: :unprocessable_entity
+       error_resp = {
+        error: @trip.errors.full_messages.to_sentence
+      }
+      render json: error_resp, status: :unprocessable_entity
     end
   end
 
