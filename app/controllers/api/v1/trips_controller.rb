@@ -49,7 +49,17 @@ class Api::V1::TripsController < ApplicationController
 
   # DELETE /trips/1
   def destroy
-    @trip.destroy
+    if @trip.destroy
+      render json: {
+        message: "Trip deleted!"
+      }
+
+    else
+
+      error_resp = {
+        error: "God knows what happened here!"
+      }
+    end
   end
 
   private
