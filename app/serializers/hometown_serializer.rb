@@ -1,3 +1,3 @@
 class HometownSerializer < ActiveModel::Serializer
-  attributes :id, :city, :state, :country
+  attributes :city, :state, :country
 end
